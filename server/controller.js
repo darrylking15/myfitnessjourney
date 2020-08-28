@@ -11,7 +11,7 @@ module.exports = {
         } else {
             const authenticated = bcrypt.compareSync(password, user[0].password)
             if(authenticated){
-                res.session.user = {
+                req.session.user = {
                     userId: user[0].user_id, 
                     username: user[0].username
                     
@@ -40,15 +40,11 @@ module.exports = {
         req.session.user = {
             userId: newUser[0].user_id, 
             username: newUser[0].username
+ }
 
 
 
-
-        }
-
-
-
-            req.status(200).send(req.session.user)
+            res.status(200).send(req.session.user)
 
     }, 
     logout: (req, res) => {
