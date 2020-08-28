@@ -71,7 +71,9 @@ app.post('/upload', upload, (req, res) =>{
             console.log(data.Location)
             const db = req.app.get('db'); 
             const {user_pic} = req.body;
-            const newPic = db.add_pic(data.Location)
+            const {user_id } = req.session.user; 
+            console.log()
+            const newPic = db.add_pic([data.Location, user_id])
 
         })
     }
