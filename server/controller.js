@@ -1,4 +1,8 @@
 const bcrypt = require('bcrypt');
+const { s3 } = require('aws-sdk');
+const { v4: uuidv4 } = require('uuid');
+
+
 
 
 module.exports = {
@@ -60,4 +64,7 @@ module.exports = {
         }
     }
     
-}
+
+
+    }
+    

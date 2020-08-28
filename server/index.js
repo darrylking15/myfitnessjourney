@@ -1,14 +1,30 @@
 require('dotenv').config();
+
 const express = require('express'); 
 const {SERVER_PORT, SESSION_SECRET,  CONNECTION_STRING} = process.env; 
 const massive = require('massive'); 
 const session = require('express-session')
 const ctrl = require('./controller')
- 
+const mutler = require('multer')
+const AWS = require('aws-sdk')
+const { v4: uuidv4 } = require('uuid');
 
 
 
-const app = express(); 
+
+const app = express();
+const s3 = new AWS.S3({
+    accessKeyId: process.env.ACCESS_KEY_ID, 
+    secretAccessKey: process.env.SECRET_ACCESS_KEY
+})
+
+const storage = mutler.memoryStorage({
+    destination: function(req, file, callback){
+        callback(null, '')
+    }
+})
+
+const upload = mutler({storage}).single('image')
 
 
 
@@ -38,6 +54,29 @@ app.post('/auth/login', ctrl.login)
 app.post('/auth/register', ctrl.register)
 app.get('/auth/logout', ctrl.logout)
 app.get('/auth/user',  ctrl.getUser)
+app.post('/upload', upload, (req, res) =>{
+        let myFile = req.file.originalname.split('.')
+        const fileType = myFile[myFile.length - 1]
+        const params = {
+            Bucket: process.env.BUCKET_NAME, 
+            Key: `${uuidv4()}.${fileType}`,
+            Body: req.file.buffer
+        }
+
+        s3.upload(params, (err, data)=>{
+            if(err){
+                res.status(500).send(err)
+            }
+            res.status(200).send(data)
+            console.log(data.Location)
+            const db = req.app.get('db'); 
+            const {user_pic} = req.body;
+            const newPic = db.add_pic(data.Location)
+
+        })
+    }
+)
+
 
 
 app.listen(SERVER_PORT, () => console.log('Server Connected On Port ' + SERVER_PORT))
