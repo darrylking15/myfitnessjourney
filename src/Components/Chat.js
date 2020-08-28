@@ -1,7 +1,15 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-export default function Chat() {
-
+export default class Chat extends Component {
+    
+    
+    
+    
+    
+    
+    
+    
+    render(){
 
 
 
@@ -10,4 +18,5 @@ export default function Chat() {
             <p>This is the Chat Page!</p>
         </div>
     )
+}
 }

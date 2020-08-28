@@ -3,8 +3,12 @@ const express = require('express');
 const {SERVER_PORT, SESSION_SECRET,  CONNECTION_STRING} = process.env; 
 const massive = require('massive'); 
 const session = require('express-session')
-const app = express(); 
 const ctrl = require('./controller')
+ 
+
+
+
+const app = express(); 
 
 
 
@@ -18,6 +22,7 @@ app.use(session({
     secret: SESSION_SECRET
 
 }))
+
 
 massive({
     connectionString: CONNECTION_STRING,
@@ -33,5 +38,6 @@ app.post('/auth/login', ctrl.login)
 app.post('/auth/register', ctrl.register)
 app.get('/auth/logout', ctrl.logout)
 app.get('/auth/user',  ctrl.getUser)
+
 
 app.listen(SERVER_PORT, () => console.log('Server Connected On Port ' + SERVER_PORT))
