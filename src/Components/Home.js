@@ -2,13 +2,10 @@ import React, { Component } from 'react'
 import logo from '../logo.jpg'
 import workout from '../workout.png'
 import styled from 'styled-components'
-import {injectGlobal} from 'styled-components'
 
 
-// injectGlobal`
 
 
-// `
 
 
 const Li = styled.ul`
@@ -51,7 +48,7 @@ const H4 = styled.h4`
     font-size: 150px; 
     font-family: 'Poppins';
     margin: 45px;
-    font-weight: 1000; 
+    font-weight: 0; 
     
 
 
