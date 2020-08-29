@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import logo from '../logo.jpg'
+import logo from '../logo.png'
 import workout from '../workout.png'
 import styled from 'styled-components'
+import apple from '../apple.svg'
 
 
 const Li = styled.ul`
@@ -10,21 +11,27 @@ const Li = styled.ul`
   margin-left: 500px;
   align-items: center;
   margin-right: 200px;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', Impact, Haettenschweiler, 'Arial Narrow Bold'
+  
 ` 
  const Img = styled.img`
-    width:  300px; 
-    height: 275px;
-    margin-left: 75px; 
+    width:  120px; 
+    height: 90px;
+    margin-left: 200px; 
     display: flex; 
     flex-direction: row; 
     position: relative
+
 ` 
 
 const Header = styled.header`
     display: flex; 
     flex-direction: row;
-    justify-content: space-between
+    justify-content: space-around;
+    background-color: #3777B2;
+    width: 100vw; 
+    height: 10vh; 
+
 
 `
 
@@ -50,7 +57,7 @@ const Body = styled.div`
     display: flex; 
     flex-wrap: wrap; 
     flex-direction: row;
-    /* margin-top: 80px; */
+    margin-top: 80px;
     
 
 
@@ -60,9 +67,52 @@ const Workout = styled.img`
     width:  300px;
     height: 600px;
     position: absolute;
-    margin-left: 69vw; 
+    margin-left: 71vw; 
     margin-top: 37px;
     
+
+`
+const LoginButton = styled.div`
+border: 3px solid  #FFFFFF;
+box-sizing: border-box;
+padding-right: 45px;
+margin-left: 15px;
+
+
+`
+
+const AppleContainer = styled.div`
+    background-color: #2A649A;
+    width: 244px; 
+    height: 60px;
+    margin-left: 300px;  
+    position: absolute;
+    margin-top: 450px;
+    /* Vector */
+
+
+
+    
+    
+
+`
+const TextContainer = styled.h1`
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 40px;
+    position: absolute;
+    margin-top: 300px; 
+    margin-left: 70px; 
+
+    
+
+`
+
+const Apple = styled.img`
+    background-color: white; 
+    width: 20px; 
+    height: 30px
 
 `
 
@@ -79,7 +129,10 @@ render(){
             <ul>Home</ul>
             <ul>Chat</ul>
             <ul>Support</ul>
+            <LoginButton>
             <ul>Login</ul>
+            </LoginButton>
+            
         </Li>
 </Header>
 
@@ -89,8 +142,14 @@ render(){
         <H4>MyFitnessJourney</H4>
         <Elipse/>
         <Workout alt='workoutpic' src={workout}/>
-        
+        <TextContainer>Connect with Trainers with one click!</TextContainer>
+        <AppleContainer>
+        <Apple src={apple} alt='applelogo'/>
+        </AppleContainer>
+
         </Body>
+        
+        
         
         
         
