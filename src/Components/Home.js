@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import logo from '../logo.png'
 import workout from '../workout.png'
 import styled from 'styled-components'
-import apple from '../apple.svg'
+import phone from '../phonebrands.png'
 
 
 const Li = styled.ul`
@@ -27,7 +27,8 @@ const Li = styled.ul`
 const Header = styled.header`
     display: flex; 
     flex-direction: row;
-    justify-content: space-around;
+    /* justify-content: space-between; */
+    align-content: center;
     background-color: #3777B2;
     width: 100vw; 
     height: 10vh; 
@@ -36,20 +37,20 @@ const Header = styled.header`
 `
 
 const H4 = styled.h4`
-    font-size: 85px; 
+    font-size: 83px; 
     font-family: 'Poppins';
-    margin-left: 50px;
+    margin-left: 30px;
     font-weight: 0; 
     
 
 
 `
 const Elipse = styled.div`
-    width: 550px;
+    width: 555px;
     height: 550px;
     border-radius: 50%;
     background: linear-gradient(180deg, #2A649A 0%, #FFFFFF 100%);
-    margin-top: 100px; 
+    margin-top: 80px; 
 
 `
 
@@ -57,7 +58,7 @@ const Body = styled.div`
     display: flex; 
     flex-wrap: wrap; 
     flex-direction: row;
-    margin-top: 80px;
+    
     
 
 
@@ -67,8 +68,8 @@ const Workout = styled.img`
     width:  300px;
     height: 600px;
     position: absolute;
-    margin-left: 71vw; 
-    margin-top: 37px;
+    margin-left: 69vw; 
+    margin-top: 15px;
     
 
 `
@@ -81,26 +82,17 @@ margin-left: 15px;
 
 `
 
-const AppleContainer = styled.div`
-    background-color: #2A649A;
-    width: 244px; 
-    height: 60px;
-    margin-left: 300px;  
-    position: absolute;
-    margin-top: 450px;
-    /* Vector */
 
 
 
     
     
 
-`
 const TextContainer = styled.h1`
     font-family: Poppins;
     font-style: normal;
     font-weight: 600;
-    font-size: 40px;
+    font-size: 37px;
     position: absolute;
     margin-top: 300px; 
     margin-left: 70px; 
@@ -109,10 +101,14 @@ const TextContainer = styled.h1`
 
 `
 
-const Apple = styled.img`
-    background-color: white; 
-    width: 20px; 
-    height: 30px
+const Phones = styled.img`
+     
+    width: 600px; 
+    height: 80px; 
+    position: absolute; 
+    margin-top: 450px; 
+    margin-left: 135px; 
+
 
 `
 
@@ -143,10 +139,7 @@ render(){
         <Elipse/>
         <Workout alt='workoutpic' src={workout}/>
         <TextContainer>Connect with Trainers with one click!</TextContainer>
-        <AppleContainer>
-        <Apple src={apple} alt='applelogo'/>
-        </AppleContainer>
-
+        <Phones src={phone} alt='phone'/>
         </Body>
         
         
