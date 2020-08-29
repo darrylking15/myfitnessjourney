@@ -4,37 +4,21 @@ import workout from '../workout.png'
 import styled from 'styled-components'
 
 
-
-
-
-
 const Li = styled.ul`
-  
-  
-  font-size: 35px; 
+  font-size: 25px; 
   display: flex; 
   margin-left: 500px;
   align-items: center;
   margin-right: 200px;
   font-family: 'Poppins', sans-serif;
-   
-
-
-
-  
-
 ` 
  const Img = styled.img`
     width:  300px; 
-    height: 250px;
+    height: 275px;
     margin-left: 75px; 
     display: flex; 
     flex-direction: row; 
     position: relative
-
-
-
-
 ` 
 
 const Header = styled.header`
@@ -45,19 +29,20 @@ const Header = styled.header`
 `
 
 const H4 = styled.h4`
-    font-size: 150px; 
+    font-size: 85px; 
     font-family: 'Poppins';
-    margin: 45px;
+    margin-left: 50px;
     font-weight: 0; 
     
 
 
 `
 const Elipse = styled.div`
-    width: 595px;
-    height: 596px;
+    width: 550px;
+    height: 550px;
     border-radius: 50%;
     background: linear-gradient(180deg, #2A649A 0%, #FFFFFF 100%);
+    margin-top: 100px; 
 
 `
 
@@ -65,7 +50,7 @@ const Body = styled.div`
     display: flex; 
     flex-wrap: wrap; 
     flex-direction: row;
-    margin-top: 130px
+    /* margin-top: 80px; */
     
 
 
@@ -73,9 +58,11 @@ const Body = styled.div`
 
 const Workout = styled.img`
     width:  300px;
-    height: 560px;
+    height: 600px;
     position: absolute;
-    margin-left: 1450px;
+    margin-left: 69vw; 
+    margin-top: 37px;
+    
 
 `
 
