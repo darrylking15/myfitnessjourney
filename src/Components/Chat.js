@@ -1,22 +1,39 @@
-import React, { Component } from 'react'
-
-export default class Chat extends Component {
-    
-    
-    
-    
-    
-    
-    
-    
-    render(){
+import React, {useState, useEffect} from 'react'; 
+import queryString from 'query-string'; 
+import io from 'socket.io-client'; 
 
 
 
+let socket; 
+
+
+
+
+
+const Chat = ({location}) => {
+    
+    const [name, setName] = useState(''); 
+    const [room, setRoom] = useState(''); 
+    const ENDPOINT = 'http://localhost:5500'; 
+
+    
+    
+    useEffect(() => {
+        const {name, room} = queryString.parse(location.search);
+
+        socket = io(ENDPOINT)
+        setName(name); 
+        setRoom(room); 
+        console.log(socket)
+
+
+    }, [ENDPOINT , location.search])
+    
+    
     return(
         <div>
-            <p>This is the Chat Page!</p>
-        </div>
-    )
+            <h1>Chat</h1>
+        </div>)
 }
-}
+
+export default  Chat

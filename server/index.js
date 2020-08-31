@@ -8,11 +8,36 @@ const ctrl = require('./controller')
 const mutler = require('multer')
 const AWS = require('aws-sdk')
 const { v4: uuidv4 } = require('uuid');
+const socket = require('socket.io'); 
+const http = require('http');
+const cors = require('cors')
+
+const router = require('./router');
+
+
 
 
 
 
 const app = express();
+
+
+const server = app.listen(SERVER_PORT, () => console.log('Server Connected On Port ' + SERVER_PORT)) 
+const io = socket(server);
+// io.origins('*:*')
+app.use(router);
+// app.use(cors({credentials: true, origin: 'http://localhost:5500' }));
+
+
+
+io.on('connection', (socket) => {
+    console.log('We have a new connection.!!!')
+
+    socket.on('disconnect', () => {
+        console.log('User has left!!!')
+    })
+})
+
 const s3 = new AWS.S3({
     accessKeyId: process.env.ACCESS_KEY_ID, 
     secretAccessKey: process.env.SECRET_ACCESS_KEY
@@ -81,4 +106,5 @@ app.post('/upload', upload, (req, res) =>{
 
 
 
-app.listen(SERVER_PORT, () => console.log('Server Connected On Port ' + SERVER_PORT))
+
+

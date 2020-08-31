@@ -14,12 +14,13 @@ const H4 = styled.h4`
     margin-left: 30px;
     font-weight: 0; 
     margin-top: 250px; 
+    letter-spacing: 4px; 
 
 
 
 `
 const Elipse = styled.div`
-    width: 555px;
+    width: 485px;
     height: 550px;
     border-radius: 50%;
     background: linear-gradient(180deg, #2A649A 0%, #FFFFFF 100%);
