@@ -11,20 +11,25 @@ import phone from '../phonebrands.png'
 const H4 = styled.h4`
     font-size: 83px; 
     font-family: 'Poppins';
-    margin-left: 30px;
+    margin-left: 180px;
     font-weight: 0; 
-    margin-top: 250px; 
+    /* padding-left: 30px; */
+    margin-top: 270px; 
     letter-spacing: 4px; 
+    color: #F5F7F7; 
+    font-family: 'Jacques Francois Shadow';
+    z-index: 3;
 
 
 
 `
-const Elipse = styled.div`
-    width: 485px;
-    height: 550px;
-    border-radius: 50%;
-    background: linear-gradient(180deg, #2A649A 0%, #FFFFFF 100%);
-    margin-top: 200px; 
+const HomeContainer = styled.div`
+    display: flex; 
+    background-color: #79031D;
+    width: 100vw; 
+    height: 100vh; 
+    z-index: 0;
+    
 
 
 `
@@ -33,6 +38,8 @@ const Body = styled.div`
     display: flex; 
     flex-wrap: wrap; 
     flex-direction: row;
+    background-color: #79031D;
+    z-index: -1;
     
     
 
@@ -40,11 +47,16 @@ const Body = styled.div`
 `
 
 const Workout = styled.img`
-    width:  300px;
+    width:  330px;
     height: 600px;
     position: absolute;
-    margin-left: 69vw; 
-    margin-top: 99px;
+    margin-left: 1110px; 
+    margin-top: -240px;
+    padding-right: 90px; 
+    z-index: 1;
+    background-color: #79031D;
+    
+    
     
 ` 
 const TextContainer = styled.h1`
@@ -53,8 +65,11 @@ const TextContainer = styled.h1`
     font-weight: 600;
     font-size: 37px;
     position: absolute;
-    margin-top: 400px; 
-    margin-left: 100px; 
+    margin-top: 50px; 
+    margin-left: 300px; 
+    color: #EDB518;
+    z-index: 2;
+    
 
     
 
@@ -65,8 +80,8 @@ const Phones = styled.img`
     width: 600px; 
     height: 80px; 
     position: absolute; 
-    margin-top: 450px; 
-    margin-left: 120px; 
+    margin-top: 150px; 
+    margin-left: 325px; 
 
 
 `
@@ -82,11 +97,13 @@ render(){
         
             
         <Body>
-        <H4>MyFitnessJourney</H4>
-        <Elipse/>
+        <H4>My Fitness Journey</H4>
+        <HomeContainer>
+        {/* <Elipse/> */}
         <Workout alt='workoutpic' src={workout}/>
         <TextContainer>Where Trainer and Trainee Meet!</TextContainer>
         <Phones src={phone} alt='phone'/>
+        </HomeContainer>
         </Body>
         
         

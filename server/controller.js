@@ -32,7 +32,7 @@ module.exports = {
 
     register: async (req, res) => {
         const db = req.app.get('db'); 
-        const { username, password, user_pic, user_height , user_weight } = req.body; 
+        const { username, password,  user_height , user_weight } = req.body; 
         const existingUser = await db.check_user(username); 
         if(existingUser[0]){
             return res.status(409).send('There is someone that has that username! Please register.' );
@@ -40,7 +40,7 @@ module.exports = {
 
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(password, salt); 
-        const newUser = await db.register_user([username, hash, user_pic, user_height , user_weight ])
+        const newUser = await db.register_user([username, hash, user_height , user_weight ])
         req.session.user = {
             userId: newUser[0].user_id, 
             username: newUser[0].username
@@ -52,7 +52,7 @@ module.exports = {
 
     }, 
     logout: (req, res) => {
-        reqw,session.destroy(); 
+        req.session.destroy(); 
         res.sendStatus(200); 
 
     }, 

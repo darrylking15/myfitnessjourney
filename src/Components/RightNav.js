@@ -10,18 +10,22 @@ const Ul = styled.ul`
     flex-flow: row nowrap;
     list-style: none;
     text-decoration:none; 
-
+    color: #EDB518;
+   
     
 
 
 li{
     padding: 18px 10px;
-    text-decoration:none; 
+    text-decoration:none;
+    /* background-color:#EDB518; */
+    color: #EDB518;  
+    
 }
 @media (max-width: 768px){
     
     flex-flow: column nowrap; 
-    background-color: #99738E;
+    background-color: #EDB518;
     position: fixed;
     transform: ${({open}) => open ? 'translate(100%)' : 'translateX(0)'} ;
     top: 0 ; 
@@ -36,7 +40,7 @@ li{
 }
 
     li{
-        color: #fff; 
+        color: #EDB518; 
     }
 
 
@@ -49,10 +53,10 @@ li{
  const RightNav = ({open}) => {
     return(
         <Ul open={open}>
-        <li><Link style={{ textDecoration: 'none', color: 'black' }} to='/'>Home</Link></li>
-        <li><Link style={{ textDecoration: 'none', color: 'black' }} to='/auth/join'>Join Chat</Link></li>
-        <li><Link style={{ textDecoration: 'none', color: 'black' }} to='/auth/support'>Support</Link></li>
-        <li><Link style={{ textDecoration: 'none', color: 'black' }} to='/auth/login'>Login</Link></li>
+        <li><Link style={{ textDecoration: 'none', color: '#EDB518' }} to='/'>Home</Link></li>
+        <li><Link style={{ textDecoration: 'none', color: '#EDB518' }} to='/auth/join'>Join Chat</Link></li>
+        <li><Link style={{ textDecoration: 'none', color: '#EDB518' }} to='/auth/support'>Support</Link></li>
+        <li><Link style={{ textDecoration: 'none', color: '#EDB518' }} to='/auth/login'>Login</Link></li>
         </Ul>
     )
 }

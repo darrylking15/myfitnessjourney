@@ -8,9 +8,10 @@ const ctrl = require('./controller')
 const mutler = require('multer')
 const AWS = require('aws-sdk')
 const { v4: uuidv4 } = require('uuid');
-const socket = require('socket.io'); 
+const socketio = require('socket.io'); 
 const http = require('http');
-const cors = require('cors')
+const cors = require('cors');
+const {addUser, removeUser, getChatUser, getUserInRoom} = require('./users')
 
 const router = require('./router');
 
@@ -23,18 +24,43 @@ const app = express();
 
 
 const server = app.listen(SERVER_PORT, () => console.log('Server Connected On Port ' + SERVER_PORT)) 
-const io = socket(server);
-// io.origins('*:*')
+const io = socketio(server);
+
 app.use(router);
-// app.use(cors({credentials: true, origin: 'http://localhost:5500' }));
+
 
 
 
 io.on('connection', (socket) => {
     console.log('We have a new connection.!!!')
+    socket.on('join', ({name, room }, cb) => {
+        console.log(name, room); 
+        const {error , user} = addUser({id: socket.id, name , room }); 
+      
+        if(error) return cb(error)
 
+        socket.emit('message', {user: 'admin', text: `${user.name}, welcome to the room {user.room}`}); 
+        socket.broadcast.to(user.room).emit('message', {user: 'admin', text: `${user.name}, has joined!`}  )
+
+        socket.join(user.room)
+        cb();  
+        
+    })
+
+
+    socket.on('sendMessage', (message, cb)=> {
+        const user = getChatUser(socket.id)
+
+        io.to(user.room).emit('message', {user: user.name, text: message})
+        cb(); 
+    })
     socket.on('disconnect', () => {
-        console.log('User has left!!!')
+        
+        const user = removeUser(socket.id)
+
+        if(user){
+            io.to(user.room).emit('message', {user: 'admin', text: `${user.name} has left!`})
+        }
     })
 })
 

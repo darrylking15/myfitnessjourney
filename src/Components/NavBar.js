@@ -7,10 +7,10 @@ import Burger from './Burger';
 const Nav = styled.nav`
     width: 100%; 
     height: 55px; 
-    /* border-bottom: 2px solid #f1f1f1;  */
     display: flex;
     justify-content: space-between; 
-    background-color: #182628;
+    background-color: #000407;
+    
     
     
    
@@ -39,7 +39,7 @@ const NavBar = () => {
     return (
         <Nav>
             <Logo>
-           <Link style={{ textDecoration: 'none', color: 'black' }} className="fas fa-dumbbell" to='/'>MFJ<i className="fas fa-dumbbell"></i></Link>
+           <Link style={{ textDecoration: 'none', color: '#F5F7F7' }} className="fas fa-dumbbell" to='/'>MFJ<i className="fas fa-dumbbell"></i></Link>
            </Logo>
            <Burger/>
            

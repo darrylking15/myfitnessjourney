@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { loginUser } from "../redux/reducer";
 import styled from "styled-components";
+import axios from 'axios'
 
 const LoginPage = styled.div`
   width: 100%;
@@ -10,7 +11,7 @@ const LoginPage = styled.div`
   justify-content: center;
   align-items: center;
   padding: 15px;
-  background: #272727;;
+  background: #79031D;
   
 `;
 
@@ -73,8 +74,8 @@ class Login extends Component {
     this.state = {
       username: "",
       password: "",
-      user_height: "",
-      user_weight: "",
+      userHeight: "",
+      userWeight: "",
       newUser: false,
     };
   }
@@ -85,14 +86,44 @@ class Login extends Component {
     });
   };
 
+
+  changeHandler = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+
+
+
+  login = () => {
+    const {username, password} = this.state; 
+    axios.post('/auth/login', {username, password}).then(res => {
+      this.props.history.push('/')
+    }).catch(err => {
+      console.log(err); 
+      alert('Login Failed!'); 
+    })
+  }
+
+
+
+
+  register = () => {
+    const {username, password, userHeight, userWeight } = this.state; 
+    axios.post('/auth/register', {username, password, user_height : userHeight, user_weight : userWeight }).then(res => {
+      this.props.history.push('/')
+    })
+  }
+
   render() {
-    const { username, password } = this.state;
+    const { username, password , userHeight, userWeight} = this.state;
     return (
       <LoginPage>
         <H1>Welcome</H1>
         {!this.state.newUser ? (
           <LoginContainer>
             <Input1
+              onChange={(e)=> this.changeHandler(e)}
               name="username"
               type="text"
               value={username}
@@ -100,26 +131,7 @@ class Login extends Component {
             />
 
             <Input2
-              name="Password"
-              type="password"
-              value={password}
-              placeholder="Password"
-            />
-
-            <div>
-              <Button>Login</Button>
-              <Button>Register</Button>
-            </div>
-          </LoginContainer>
-        ) : (
-          <LoginContainer>
-            <Input1
-              name="username"
-              type="text"
-              value={username}
-              placeholder="Username"
-            />
-            <Input2
+              onChange={(e)=> this.changeHandler(e)}
               name="password"
               type="password"
               value={password}
@@ -127,8 +139,44 @@ class Login extends Component {
             />
 
             <div>
-              <Button>Sign Up</Button>
-              <Button>Already Registered?</Button>
+              <Button onClick={this.login}>Login</Button>
+              <Button onClick={this.toggle}>Sign Up</Button>
+            </div>
+          </LoginContainer>
+        ) : (
+          <LoginContainer>
+            <Input1
+              onChange={(e)=> this.changeHandler(e)}
+              name="username"
+              type="text"
+              value={username}
+              placeholder="Username"
+            />
+            <Input2
+              onChange={(e)=> this.changeHandler(e)}
+              name="password"
+              type="password"
+              value={password}
+              placeholder="Password"
+            />
+            <Input2
+              onChange={(e)=> this.changeHandler(e)}
+              name="userHeight"
+              type="text"
+              value={userHeight}
+              placeholder="What is your height?"
+            />
+            <Input2
+              onChange={(e)=> this.changeHandler(e)}
+              name="userWeight"
+              type="text"
+              value={userWeight}
+              placeholder="What is your weight?"
+            />
+
+            <div>
+              <Button onClick={this.register}>Register</Button>
+              <Button onClick={this.toggle}>Already Registered?</Button>
             </div>
           </LoginContainer>
         )}

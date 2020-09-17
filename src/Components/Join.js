@@ -1,7 +1,17 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
+import styled from 'styled-components';
 
 
+const joinOuterContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  height: 100vh;
+  align-items: center;
+  background-color: #1A1A1D;
+
+`
 
 
 const Join = () => {

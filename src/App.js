@@ -5,12 +5,11 @@ import routes from "./routes";
 import './reset.css'
 
 const BGColor = styled.div`
-   background-color: black; 
-  background-image: black;
+  
+ 
   width: 100vw;
   height: 100vh;
- 
- 
+  
  html {
     width: 100%;
     margin: 0px;
